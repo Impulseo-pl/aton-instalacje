@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /_src/
+
+Sitemap: https://impulseo-pl.github.io/aton-instalacje/sitemap.xml

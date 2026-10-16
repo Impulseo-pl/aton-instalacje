@@ -1,0 +1,282 @@
+:root{
+  --czern:#070708;
+  --bialy:#fff;
+  --tekst:rgba(255,255,255,.88);
+  --tekst2:rgba(255,255,255,.74);
+  --linia:rgba(255,255,255,.16);
+  --szklo:rgba(10,10,13,.58);
+  --cyjan:#00EEFF;
+  --font:"Montserrat",system-ui,sans-serif;
+  --przycisk:"Roboto","Montserrat",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--czern);color:var(--tekst);font:400 17px/1.75 var(--font);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:300;color:var(--bialy)}
+p{margin:0 0 1em}
+:focus-visible{outline:2px solid var(--cyjan);outline-offset:3px}
+.skip{position:absolute;left:-9999px;top:8px;background:#fff;color:#000;padding:8px 14px;z-index:100}
+.skip:focus{left:12px}
+
+/* tło – nocne zdjęcie domu, jak na aton-instalacje.pl */
+.noc{position:fixed;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(7,7,8,.25) 0%,rgba(7,7,8,.55) 55%,rgba(7,7,8,.82) 100%),
+  url(../img/noc-1536.webp) center/cover no-repeat}
+@media (max-width:900px){.noc{background-image:linear-gradient(180deg,rgba(7,7,8,.35),rgba(7,7,8,.8)),url(../img/noc-900.webp)}}
+
+.wrap{max-width:1260px;margin:0 auto;padding:0 24px}
+.waski{max-width:900px}
+
+/* nagłówki w stylu ATON: lekki Montserrat, rozstrzelone wersaliki */
+.t{font-size:32px;font-weight:300;letter-spacing:4px;text-transform:uppercase;text-align:center;line-height:1.3;
+  margin-bottom:48px;text-shadow:0 2px 15px rgba(0,0,0,.5)}
+.t-lewo{text-align:left;font-size:24px;letter-spacing:3px;margin-bottom:24px}
+.maly{font-size:14px;font-weight:600;letter-spacing:4px;text-transform:uppercase;margin:0 0 14px}
+.wstep,.podtytul{max-width:880px;margin:0 auto 56px;text-align:center;font-size:18px;color:var(--tekst)}
+.srodek{text-align:center;margin:48px 0 0}
+
+/* przyciski jak w oryginale: biała ramka 2 px */
+.btn{display:inline-block;font:500 16px/1 var(--przycisk);color:#fff;text-decoration:none;border:2px solid #fff;
+  padding:16px 30px;background:transparent;cursor:pointer;box-shadow:0 0 10px rgba(0,0,0,.5);
+  text-shadow:0 0 10px rgba(0,0,0,.3);transition:background .35s,color .35s,box-shadow .35s}
+.btn:hover{background:#fff;color:var(--czern);box-shadow:0 0 18px rgba(255,255,255,.45)}
+.btn-cichy{border-color:rgba(255,255,255,.45)}
+.link{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:2px;font-weight:500;letter-spacing:.5px}
+.link:hover{border-color:var(--cyjan);color:var(--cyjan)}
+
+/* szklane panele z podstrony „O nas” */
+.szklo{background:var(--szklo);border:1px solid var(--linia);-webkit-backdrop-filter:blur(14px) saturate(120%);
+  backdrop-filter:blur(14px) saturate(120%);padding:48px}
+.szklo hr,.kontakt-dane hr{border:0;border-top:1px solid var(--linia);margin:32px 0}
+
+/* ---------- menu ---------- */
+.top{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .35s,border-color .35s;border-bottom:1px solid transparent}
+.top.scroll{background:rgba(7,7,8,.82);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-color:var(--linia)}
+.top-in{max-width:1260px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.znak img{width:108px;filter:drop-shadow(0 0 6px rgba(255,255,255,.35))}
+.menu{display:flex;align-items:center;gap:30px}
+.menu a{text-decoration:none;font-size:16px;color:rgba(255,255,255,.82);transition:color .3s,text-shadow .3s}
+.menu a:hover,.menu a[aria-current]{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.6)}
+.menu a[aria-current]{font-weight:600}
+.menu .menu-tel{border:1px solid rgba(255,255,255,.5);padding:9px 16px;font-weight:500;letter-spacing:.5px;color:#fff}
+.menu .menu-tel:hover{border-color:#fff}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative}
+.burger span{position:absolute;left:10px;right:10px;height:2px;background:#fff;transition:transform .3s,top .3s}
+.burger span:first-child{top:17px}.burger span:last-child{top:26px}
+.burger[aria-expanded=true] span:first-child{top:21px;transform:rotate(45deg)}
+.burger[aria-expanded=true] span:last-child{top:21px;transform:rotate(-45deg)}
+
+/* ---------- hero ---------- */
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:110px 24px 0;position:relative}
+.hero-in{max-width:980px;margin:auto 0}
+.hero-sygnet{width:150px;margin:0 auto 22px;filter:drop-shadow(0 0 10px rgba(255,255,255,.8)) drop-shadow(0 0 20px rgba(255,255,255,.4));
+  animation:swiatlo 2.4s ease-out both}
+.hero-napis{width:230px;margin:0 auto 48px;filter:drop-shadow(0 0 10px rgba(255,255,255,.7)) drop-shadow(0 0 22px rgba(255,255,255,.35));
+  animation:swiatlo 2.4s .25s ease-out both}
+@keyframes swiatlo{0%{opacity:0;filter:none}60%{opacity:1}}
+.hero h1{font-size:30px;font-weight:300;letter-spacing:2px;line-height:1.35;margin-bottom:22px;
+  text-shadow:0 0 10px rgba(255,255,255,.6),0 0 20px rgba(255,255,255,.2)}
+.hero-sub{font-size:20px;font-weight:300;letter-spacing:1px;color:#fff;margin-bottom:44px;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.przyciski{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-pasek{width:100%;max-width:1260px;margin-top:64px;border-top:1px solid var(--linia);display:flex;justify-content:center;flex-wrap:wrap;gap:10px 44px;padding:22px 0 26px}
+.hero-pasek a{text-decoration:none;white-space:nowrap;font-size:12px;font-weight:500;letter-spacing:1.8px;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.hero-pasek a:hover{color:#fff;text-shadow:0 0 10px rgba(255,255,255,.7)}
+
+/* ---------- sekcje ---------- */
+.sekcja{padding:110px 0}
+.sekcja-bliska{padding-top:20px}
+.naglowek{padding:170px 0 30px;text-align:center}
+.naglowek .t{margin-bottom:28px}
+.naglowek .podtytul{margin-bottom:30px}
+
+.dwa-panele{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1100px;margin:0 auto}
+.panel-duzy p{font-size:23px;line-height:1.78;color:#fff;margin:0}
+.dwa-panele .szklo p{color:var(--tekst)}
+
+/* kafle oferty – ciemne kafle z oryginału, rozbudowane o zdjęcie i opis */
+.kafle{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.kafel{display:flex;flex-direction:column;text-decoration:none;background:rgba(7,7,8,.72);border:1px solid var(--linia);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:border-color .35s,box-shadow .35s}
+.kafel:hover{border-color:rgba(255,255,255,.55);box-shadow:0 0 24px rgba(255,255,255,.08)}
+.kafel-foto{aspect-ratio:16/10;overflow:hidden}
+.kafel-foto img{width:100%;height:100%;object-fit:cover;filter:brightness(.82) saturate(.9);transition:filter .5s,transform .8s}
+.kafel-foto .kadr-dom{object-position:62% 40%}
+.kafel:hover .kafel-foto img{filter:brightness(1) saturate(1);transform:scale(1.03)}
+.kafel-tekst{padding:30px 30px 32px;text-align:center;display:flex;flex-direction:column;flex:1}
+.kafel h3{font-size:17px;font-weight:600;letter-spacing:4px;text-transform:uppercase;line-height:1.5;margin-bottom:14px}
+.kafel p{font-size:16px;color:var(--tekst2);flex:1}
+.wiecej{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#fff;font-weight:500}
+.kafel:hover .wiecej{color:var(--cyjan)}
+
+/* sekcja pełna – lita czerń zamiast zdjęcia w tle */
+.pelna{background:var(--czern);border-top:1px solid var(--linia);border-bottom:1px solid var(--linia)}
+.katy{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.kat{text-decoration:none;display:block}
+.kat-foto{aspect-ratio:3/4;overflow:hidden;border:1px solid rgba(255,255,255,.2);margin-bottom:18px}
+.kat-foto img{width:100%;height:100%;object-fit:cover;transition:transform .8s,filter .5s;filter:brightness(.9)}
+.kat:hover .kat-foto img{transform:scale(1.04);filter:brightness(1.05)}
+.kat h3{font-size:15px;font-weight:600;letter-spacing:3px;text-transform:uppercase;line-height:1.5}
+.kat span{font-size:14px;color:var(--tekst2)}
+
+.porzadek{display:grid;grid-template-columns:6fr 5fr;gap:40px;align-items:center}
+.porzadek-foto{display:grid;grid-template-columns:3fr 4fr;gap:16px;align-items:center}
+.porzadek-foto img{border:1px solid rgba(255,255,255,.2)}
+
+.kroki{list-style:none;margin:0;padding:48px 0;display:grid;grid-template-columns:repeat(5,1fr)}
+.kroki li{padding:0 30px;border-left:1px solid var(--linia);counter-increment:k}
+.kroki li:first-child{border-left:0}
+.kroki h3{font-size:14px;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.kroki p{font-size:15.5px;color:var(--tekst2);margin:0;line-height:1.7}
+
+.faq details{border-bottom:1px solid var(--linia)}
+.faq details:first-child{border-top:1px solid var(--linia)}
+.faq summary{list-style:none;cursor:pointer;padding:24px 44px 24px 0;font-size:18px;font-weight:500;color:#fff;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:8px;top:32px;width:10px;height:10px;border-right:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(45deg);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(-135deg);top:36px}
+.faq details p{padding:0 0 24px;color:var(--tekst);max-width:780px}
+
+/* ---------- kontakt ---------- */
+.kontakt-uklad{display:grid;grid-template-columns:5fr 7fr;gap:40px;align-items:start}
+.neon-link{display:block;text-decoration:none;color:#fff;font-size:21px;font-weight:300;letter-spacing:2px;margin-top:26px;
+  text-shadow:0 0 8px rgba(255,255,255,.4);transition:text-shadow .4s,transform .4s;word-break:break-word}
+.neon-link span{display:block;font-size:12px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--tekst2);text-shadow:none;margin-bottom:2px}
+.neon-link:hover{text-shadow:0 0 10px #fff,0 0 20px #00d2ff;transform:translateX(8px)}
+.neon-link.duzy{font-size:26px;margin:0 0 30px}
+.lista{margin:0;padding-left:20px}
+.lista li{margin-bottom:8px}
+
+.form .pola{display:grid;grid-template-columns:1fr 1fr;gap:20px 22px}
+.form label{display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--tekst)}
+.form .szer{grid-column:1/-1}
+.form input,.form select,.form textarea{font:400 16px/1.5 var(--font);color:#fff;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.28);
+  padding:13px 14px;border-radius:0;width:100%;letter-spacing:0;text-transform:none}
+.form select option{background:#111;color:#fff}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:#fff;box-shadow:0 0 12px rgba(255,255,255,.18)}
+.form textarea::placeholder{color:rgba(255,255,255,.45)}
+.form .zgoda{flex-direction:row;align-items:center;gap:10px;margin:22px 0;text-transform:none;letter-spacing:0;font-weight:400;font-size:15px}
+.zgoda input{width:18px;height:18px;accent-color:#fff}
+.form-info{margin:16px 0 0;font-size:15px;min-height:1em}
+
+/* ---------- oferta ---------- */
+.spis{position:sticky;top:79px;z-index:20;background:rgba(7,7,8,.82);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-top:1px solid var(--linia);border-bottom:1px solid var(--linia);margin-top:30px}
+.spis .wrap{display:flex;justify-content:center;gap:44px;overflow-x:auto;scrollbar-width:none}
+.spis .wrap::-webkit-scrollbar{display:none}
+.spis a{flex:none;text-decoration:none;font-size:12.5px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;padding:18px 0;color:rgba(255,255,255,.78);border-bottom:1px solid transparent}
+.spis a:hover,.spis a.on{color:#fff;border-color:#fff}
+.usluga{padding:100px 0 0;scroll-margin-top:90px}
+.usluga:last-of-type{padding-bottom:40px}
+.usluga-gora{display:grid;grid-template-columns:7fr 5fr;gap:30px;align-items:stretch}
+.usluga-gora.odwr .zakres{order:-1}
+.usluga-gora.odwr{grid-template-columns:5fr 7fr}
+.lead{font-size:20px;color:#fff;line-height:1.7}
+.zakres ul{list-style:none;margin:0 0 34px;padding:0}
+.zakres li{padding:12px 0;border-bottom:1px solid var(--linia);font-size:16px}
+.zakres li:first-child{border-top:1px solid var(--linia)}
+.zakres{display:flex;flex-direction:column}
+.zakres .btn{align-self:flex-start;margin-top:auto}
+.mur{columns:4;column-gap:16px;margin-top:30px}
+.mur .fot{display:block;break-inside:avoid;margin-bottom:16px;border:1px solid rgba(255,255,255,.18);position:relative;overflow:hidden;text-decoration:none}
+.mur .fot img{width:100%;transition:transform .7s,filter .4s}
+.mur .fot:hover img{transform:scale(1.03)}
+.foto-szer{margin:30px 0 0;position:relative;border:1px solid rgba(255,255,255,.18)}
+.foto-szer img{width:100%;aspect-ratio:21/9;object-fit:cover;object-position:60% 45%}
+.foto-szer figcaption{position:absolute;right:12px;bottom:10px;font-size:12px;letter-spacing:1px;color:rgba(255,255,255,.7)}
+
+/* ---------- realizacje ---------- */
+.galeria-sekcja{padding-top:60px}
+.filtry{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 34px;margin-bottom:40px}
+.filtry button{background:none;border:0;border-bottom:1px solid transparent;color:rgba(255,255,255,.72);font:500 13px/1 var(--font);
+  letter-spacing:2.5px;text-transform:uppercase;padding:12px 0;cursor:pointer}
+.filtry button:hover{color:#fff}
+.filtry button.on{color:#fff;border-color:#fff;text-shadow:0 0 10px rgba(255,255,255,.5)}
+.mur-duzy{columns:4}
+.mur-duzy .fot span{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;font-size:13.5px;line-height:1.45;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.82));opacity:0;transition:opacity .35s}
+.mur-duzy .fot:hover span,.mur-duzy .fot:focus-visible span{opacity:1}
+.fot.ukryte{display:none}
+
+.lb{position:fixed;inset:0;z-index:90;background:rgba(5,5,6,.95);display:flex;align-items:center;justify-content:center;padding:20px 70px}
+.lb[hidden]{display:none}
+.lb figure{margin:0;max-width:100%;max-height:100%;display:flex;flex-direction:column;align-items:center}
+.lb img{max-height:82vh;width:auto;border:1px solid rgba(255,255,255,.2)}
+.lb figcaption{margin-top:14px;font-size:15px;letter-spacing:.5px;text-align:center}
+.lb button{position:absolute;background:none;border:0;color:#fff;font:300 46px/1 var(--font);cursor:pointer;padding:10px 16px}
+.lb-x{top:10px;right:14px}.lb-p{left:8px;top:50%;transform:translateY(-50%)}.lb-n{right:8px;top:50%;transform:translateY(-50%)}
+
+/* ---------- o nas ---------- */
+.rzad{display:grid;grid-template-columns:5fr 7fr;gap:40px;align-items:center;margin-bottom:60px}
+.rzad:last-child{margin-bottom:0}
+.rzad.odwr{grid-template-columns:7fr 5fr}
+.rzad.odwr .rzad-foto{order:2}
+.rzad-foto img{border:1px solid rgba(255,255,255,.2);width:100%}
+
+/* ---------- stopka ---------- */
+.stopka{background:rgba(7,7,8,.92);border-top:1px solid var(--linia);margin-top:40px}
+.stopka-gora{display:grid;grid-template-columns:1.2fr 1.4fr 1fr 1.2fr;gap:40px;padding-top:70px;padding-bottom:50px}
+.stopka-logo{width:110px;margin-bottom:16px;filter:drop-shadow(0 0 8px rgba(255,255,255,.4))}
+.stopka h2{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+.stopka ul{list-style:none;margin:0;padding:0}
+.stopka li{margin-bottom:8px;font-size:15px}
+.stopka a{text-decoration:none;color:var(--tekst)}
+.stopka a:hover{color:#fff;text-shadow:0 0 8px rgba(255,255,255,.5)}
+.stopka p{font-size:15px;color:var(--tekst2)}
+.stopka-dol{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 30px;border-top:1px solid var(--linia);padding-top:24px;padding-bottom:28px;font-size:15px;color:#fff}
+
+/* ---------- RWD ---------- */
+@media (max-width:1100px){
+  .kafle{grid-template-columns:1fr 1fr}
+  .kroki{grid-template-columns:1fr 1fr 1fr;row-gap:36px}
+  .kroki li:nth-child(4){border-left:0}
+  .mur-duzy{columns:3}
+  .hero-pasek{justify-content:center}
+}
+@media (max-width:900px){
+  body{font-size:16.5px}
+  .menu{position:fixed;inset:0;background:rgba(7,7,8,.97);flex-direction:column;justify-content:center;gap:26px;
+    opacity:0;pointer-events:none;transition:opacity .3s}
+  .menu.open{opacity:1;pointer-events:auto}
+  .menu a{font-size:22px;letter-spacing:2px}
+  .burger{display:block;z-index:60}
+  .top-in{padding:12px 16px}
+  .dwa-panele,.porzadek,.kontakt-uklad,.usluga-gora,.usluga-gora.odwr,.rzad,.rzad.odwr{grid-template-columns:1fr}
+  .usluga-gora.odwr .zakres{order:0}
+  .rzad.odwr .rzad-foto{order:0}
+  .katy{grid-template-columns:1fr 1fr}
+  .stopka-gora{grid-template-columns:1fr 1fr}
+  .spis{top:68px}
+  .mur{columns:2}
+  .spis .wrap{justify-content:flex-start;gap:28px}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .szklo{padding:30px 22px}
+  .sekcja{padding:70px 0}
+  .sekcja-bliska{padding-top:10px}
+  .naglowek{padding:120px 0 20px}
+  .t{font-size:24px;letter-spacing:3px;margin-bottom:32px}
+  .t-lewo{font-size:20px;letter-spacing:2px}
+  .hero-sygnet{width:110px}
+  .hero-napis{width:180px;margin-bottom:36px}
+  .hero h1{font-size:23px;letter-spacing:1px}
+  .hero-sub{font-size:17px}
+  .hero-pasek{flex-direction:column;align-items:center;gap:10px;margin-top:44px}
+  .panel-duzy p{font-size:19px}
+  .kafle{grid-template-columns:1fr}
+  .kroki{grid-template-columns:1fr;padding:30px 22px}
+  .kroki li{border-left:0;border-top:1px solid var(--linia);padding:22px 0 0}
+  .kroki li:first-child{border-top:0;padding-top:0}
+  .form .pola{grid-template-columns:1fr}
+  .neon-link.duzy{font-size:21px;letter-spacing:1px}
+  .stopka-gora{grid-template-columns:1fr}
+  .stopka-dol{flex-direction:column}
+  .lb{padding:10px 40px}
+  .lb button{font-size:36px}
+  .mur-duzy .fot span{display:none}
+  .faq summary{font-size:16.5px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}

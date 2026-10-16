@@ -1,0 +1,6 @@
+_src/*.png
+_src/*.jpg
+_src/real/
+_src/orig/
+_src/pages.json
+_src/eaton.html
