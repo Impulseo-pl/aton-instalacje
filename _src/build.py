@@ -194,6 +194,14 @@ ORG = {
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": o['t'], "url": BASE + 'oferta/#' + o['id']}} for o in OFERTA]},
 }
 
+def sygnet(cls):
+    return (f'<svg class="{cls}" viewBox="-4 -4 170 164" aria-hidden="true" focusable="false">'
+            '<circle class="s-kolo" cx="80" cy="77.5" r="76" pathLength="1" transform="rotate(-80 80 77.5)"/>'
+            '<path class="s-znak" d="M151 65.5H160" pathLength="1"/>'
+            '<path class="s-tr" d="M80 24L135 117H25Z" pathLength="1"/>'
+            '<path class="s-tr2" d="M52.5 70.5H107.5L80 117Z" pathLength="1"/>'
+            '</svg>')
+
 # ---------- szablon ----------
 def head(p, title, desc, path, extra_ld=None):
     ld = [dict(ORG, **{"@context": "https://schema.org"})]
@@ -221,6 +229,7 @@ def head(p, title, desc, path, extra_ld=None):
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Roboto:wght@500&display=swap">
 <link rel="preload" as="image" href="{p}img/noc-1536.webp" imagesrcset="{p}img/noc-900.webp 900w, {p}img/noc-1536.webp 1536w" imagesizes="100vw">
 <link rel="stylesheet" href="{p}assets/styles.css">
+<script>(function(d){{d.className+=' js';try{{if(!sessionStorage.getItem('aton_l'))d.className+=' pierwszy'}}catch(e){{}}}})(document.documentElement)</script>
 {lds}
 </head>'''
 
@@ -228,6 +237,8 @@ def header(p, cur):
     links = ''.join(
         f'<a href="{p}{u}"{" aria-current=\"page\"" if u == cur else ""}>{n}</a>' for u, n in NAV)
     return f'''<body>
+<div class="loader" aria-hidden="true">{sygnet('loader-sygnet')}<img class="loader-napis" src="{p}img/napis-aton.png" width="237" height="50" alt=""><span class="loader-linia"></span></div>
+<div class="zaslona" aria-hidden="true"></div>
 <div class="noc" aria-hidden="true"></div>
 <a class="skip" href="#tresc">Przejdź do treści</a>
 <header class="top">
@@ -260,6 +271,8 @@ def footer(p):
   </div>
 </footer>
 <div class="lb" id="lb" hidden><button class="lb-x" aria-label="Zamknij">×</button><button class="lb-p" aria-label="Poprzednie">‹</button><figure><img alt=""><figcaption></figcaption></figure><button class="lb-n" aria-label="Następne">›</button></div>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
+<script src="{p}assets/ruch.js" defer></script>
 <script src="{p}assets/app.js" defer></script>
 </body>
 </html>'''
@@ -340,7 +353,7 @@ def home():
     return head(p, title, desc, '', [faq_ld(FAQ)]) + header(p, '') + f'''
 <section class="hero">
   <div class="hero-in">
-    <img class="hero-sygnet" src="img/sygnet.png" width="162" height="155" alt="">
+    {sygnet('hero-sygnet')}
     <img class="hero-napis" src="img/napis-aton.png" width="237" height="50" alt="ATON">
     <h1>Nowoczesna technologia w eleganckiej formie</h1>
     <p class="hero-sub">Instalacje elektryczne, automatyka i inteligentne systemy dla wymagających inwestycji.</p>

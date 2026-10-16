@@ -3,8 +3,8 @@
   var top=document.querySelector('.top'),btn=document.querySelector('.burger'),menu=document.getElementById('menu');
   function sc(){top.classList.toggle('scroll',window.scrollY>40)}
   sc();window.addEventListener('scroll',sc,{passive:true});
-  btn.addEventListener('click',function(){var o=menu.classList.toggle('open');btn.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''});
-  menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');btn.setAttribute('aria-expanded',false);document.body.style.overflow=''}});
+  btn.addEventListener('click',function(){var o=menu.classList.toggle('open');btn.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';var L=window.atonLenis;if(L){o?L.stop():L.start()}});
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');btn.setAttribute('aria-expanded',false);document.body.style.overflow='';if(window.atonLenis)window.atonLenis.start()}});
 
   /* filtr realizacji */
   var mur=document.getElementById('mur'),filtry=document.querySelectorAll('.filtry button');
@@ -23,9 +23,9 @@
   document.addEventListener('click',function(e){
     var a=e.target.closest('a.fot');if(!a)return;e.preventDefault();
     lista=Array.prototype.filter.call(a.parentNode.querySelectorAll('a.fot'),function(x){return !x.classList.contains('ukryte')});
-    pokaz(lista.indexOf(a));lb.hidden=false;document.body.style.overflow='hidden';lb.querySelector('.lb-x').focus();
+    pokaz(lista.indexOf(a));lb.hidden=false;document.body.style.overflow='hidden';if(window.atonLenis)window.atonLenis.stop();lb.querySelector('.lb-x').focus();
   });
-  function zamknij(){lb.hidden=true;document.body.style.overflow=''}
+  function zamknij(){lb.hidden=true;document.body.style.overflow='';if(window.atonLenis)window.atonLenis.start()}
   lb.querySelector('.lb-x').onclick=zamknij;
   lb.querySelector('.lb-p').onclick=function(){pokaz(idx-1)};
   lb.querySelector('.lb-n').onclick=function(){pokaz(idx+1)};
